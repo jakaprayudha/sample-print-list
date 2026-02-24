@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="hematologi.css" />
+  </head>
+  <body>
+    <div class="paper">
+      <div class="header">Assay Report by the Analyzer</div>
+      12-02-2026 18:30 Mode: WB-All ID:263 Dept: Outpatient Gender:Male Age: 45
+      Yrs <br />
+      <div class="row">
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Parameter 
+
+         WBC    
+         Lymph#  
+         Mid#   
+         Gran# 
+         Lymph% 
+         Mid%    
+         Gran%  
+         RBC   
+         HGB   
+         HCT   
+         </pre
+          >
+        </div>
+
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Result 
+
+         H  34.6 x 10^9/L
+            1.6 x 10^9/L
+         H  1.5 x 10^9/L
+         H  31.5 x 10^9/L
+         L  4.7 %
+            4.3 %
+         H  91.0 %
+            13.6 g/dL
+            5.01 x 10^12/L
+            93.0 %
+         </pre
+          >
+        </div>
+
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Ref. Range 
+
+         5.0 - 11.0
+         1.2 - 3.2
+         0.3 - 0.8
+         1.2 - 6.8
+         20.0 - 40.0
+         2.0 - 8.0
+         43.0 - 76.0
+         11.0 - 16.0
+         3.80 - 6.50
+         36.0 - 54.0
+         </pre
+          >
+        </div>
+
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Parameter 
+
+         MCV    
+         MCH
+         MCHC
+         RDW-CV
+         RDW-SD
+         PLT
+         MPV
+         PDW
+         PCT
+         </pre
+          >
+        </div>
+
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Result 
+
+         H  76.0 fL
+            27.2 pg
+         H  35.8 g/dL
+         H  14.5 %
+         H  45.0 fL
+            346 x 10^9/L
+         H  11.0 fL
+            14.0 
+            0.314 %
+         </pre
+          >
+        </div>
+
+        <!-- ===== 1 ===== -->
+        <div class="block">
+          <pre>
+         Ref. Range 
+
+         76.0 - 96.0
+         27.0 - 33.0
+         32.0 - 36.0
+         11.5 - 14.5
+         35.0 - 56.0
+         150 - 450
+         6.5 - 9.5
+         10.0 - 18.0
+         0.100 - 0.500
+         </pre
+          >
+        </div>
+
+        <!-- ===== HISTOGRAM ===== -->
+        <div class="block">
+          <div class="small">WBC</div>
+          <canvas id="wbc"></canvas>
+
+          <div class="small">RBC</div>
+          <canvas id="rbc"></canvas>
+
+          <div class="small">PLT</div>
+          <canvas id="plt"></canvas>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="histogram.js"></script>
+</html>

@@ -1,0 +1,48 @@
+@page {
+  margin: 0;
+  size: 58mm auto;
+}
+
+body {
+  margin: 0;
+  background: white;
+  font-family: "Courier New", "Lucida Console", monospace;
+}
+
+.paper {
+  width: 58mm; /* landscape panjang */
+  height: 58mm;
+  padding: 2mm;
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.header {
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.row {
+  display: flex;
+  gap: 0px;
+}
+
+.block {
+  min-width: 120px;
+}
+
+pre {
+  margin: 0;
+  white-space: pre;
+}
+
+canvas {
+  width: 120px;
+  height: 45px;
+  border-left: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+
+.small {
+  font-size: 9px;
+}
