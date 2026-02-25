@@ -2,15 +2,18 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Print Thermal</title>
+    <title>Thermal Print</title>
     <link rel="stylesheet" href="hemoglobin.css" />
   </head>
+
   <body>
     <div class="receipt">
-      <div class="center" style="font-weight: bold; font-size: 18px">
-        <img src="logo.png" width="150" alt="" /> <br />
+      <!-- Logo -->
+      <div class="center logo">
+        <img src="logo.png" width="150" />
       </div>
 
+      <!-- Date Time -->
       <div class="row">
         <div>2025/07/16</div>
         <div>09:34</div>
@@ -18,39 +21,47 @@
 
       <div class="dash"></div>
 
-      SN : FA20FBITH2499<br />
-      Version : V001.063
+      <!-- Device Info -->
+      <div>SN : FA20FBITH2499</div>
+      <div>Version : V001.063</div>
 
       <br />
 
-      Lot No. : 60771D3??
+      <div>Lot No. : 60771D3??</div>
 
       <div class="dash"></div>
 
-      Operator ID : guest<br />
-      Patient ID : arifin
+      <!-- User Info -->
+      <div>Operator ID : guest</div>
+      <div>Patient ID : arifin</div>
 
-      <!-- <div class="big">C</div> -->
-
-      <div class="dash"></div>
-
-      HbA1c = 4.7 %[NGSP]<br />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;88.19 mg/dL[eAG]
-      Procedural Control = Valid
-
-      <div class="dash"></div>
-
-      <div class="small">
-        [ ADA target for patients with diabetes ]<br />
-        IFCC : 53 mmol/mol<br />
-        NGSP : 7.00%<br />
-        JDS/JSCC : 6.60%<br />
-        Mono-S : 6.10%
+      <!-- Big Result -->
+      <div class="big">
+        <img src="c.png" width="80" alt="" />
       </div>
 
       <div class="dash"></div>
 
-      Note:
+      <!-- Result -->
+      <div>HbA1c = 4.7 %[NGSP]</div>
+      <div class="indent">88.19 mg/dL[eAG]</div>
+      <div>Procedural Control = Valid</div>
+
+      <div class="dash"></div>
+
+      <!-- ADA Target -->
+      <div class="small center">[ ADA target for patients with diabetes ]</div>
+
+      <div class="grid">
+        <div>IFCC : 53 mmol/mol</div>
+        <div>NGSP : 7.00%</div>
+        <div>JDS/JSCC : 6.60%</div>
+        <div>Mono-S : 6.10%</div>
+      </div>
+
+      <div class="dash"></div>
+
+      <div>Note:</div>
     </div>
   </body>
 </html>
