@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hematology Histogram Simulator</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 20px;
+      }
+
+      input {
+        width: 100%;
+        padding: 5px;
+        margin: 3px 0 8px 0;
+      }
+
+      canvas {
+        margin-top: 20px;
+      }
+
+      h3 {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Hematology Histogram Simulator</h2>
+
+      <div class="grid">
+        <!-- ===== WBC ===== -->
+        <div>
+          <h3>WBC Parameter</h3>
+
+          WBC <input id="wbc" value="7" /> Lymph%
+          <input id="lymph" value="30" /> Mid%
+          <input id="mid" value="10" /> Gran% <input id="gran" value="60" />
+        </div>
+
+        <!-- ===== RBC ===== -->
+        <div>
+          <h3>RBC Parameter</h3>
+
+          RBC <input id="rbc" value="5" /> HGB <input id="hgb" value="14" /> MCV
+          <input id="mcv" value="90" /> RDW <input id="rdw" value="13" />
+        </div>
+
+        <!-- ===== PLT ===== -->
+        <div>
+          <h3>PLT Parameter</h3>
+
+          PLT <input id="plt" value="250" /> MPV
+          <input id="mpv" value="10" /> PDW <input id="pdw" value="12" />
+        </div>
+      </div>
+
+      <h3>WBC Histogram</h3>
+      <canvas id="wbcChart" height="120"></canvas>
+
+      <h3>RBC Histogram</h3>
+      <canvas id="rbcChart" height="120"></canvas>
+
+      <h3>PLT Histogram</h3>
+      <canvas id="pltChart" height="120"></canvas>
+    </div>
+
+    <script>
+      function gaussian(x, mean, sd, height) {
+        return height * Math.exp(-0.5 * Math.pow((x - mean) / sd, 2));
+      }
+
+      /* ================= WBC ================= */
+
+      const wbcLabels = Array.from({ length: 40 }, (_, i) => i * 10 + 50);
+
+      const wbcChart = new Chart(document.getElementById("wbcChart"), {
+        type: "line",
+        data: {
+          labels: wbcLabels,
+          datasets: [
+            {
+              label: "WBC",
+              data: [],
+              borderColor: "green",
+              tension: 0.3,
+            },
+          ],
+        },
+      });
+
+      /* ================= RBC ================= */
+
+      const rbcLabels = Array.from({ length: 40 }, (_, i) => i * 5 + 60);
+
+      const rbcChart = new Chart(document.getElementById("rbcChart"), {
+        type: "line",
+        data: {
+          labels: rbcLabels,
+          datasets: [
+            {
+              label: "RBC",
+              data: [],
+              borderColor: "red",
+              tension: 0.3,
+            },
+          ],
+        },
+      });
+
+      /* ================= PLT ================= */
+
+      const pltLabels = Array.from({ length: 40 }, (_, i) => i * 2 + 2);
+
+      const pltChart = new Chart(document.getElementById("pltChart"), {
+        type: "line",
+        data: {
+          labels: pltLabels,
+          datasets: [
+            {
+              label: "PLT",
+              data: [],
+              borderColor: "blue",
+              tension: 0.3,
+            },
+          ],
+        },
+      });
+
+      function updateCharts() {
+        /* ===== WBC ===== */
+
+        const lymph = Number(document.getElementById("lymph").value);
+        const mid = Number(document.getElementById("mid").value);
+        const gran = Number(document.getElementById("gran").value);
+
+        const wbcData = wbcLabels.map(
+          (x) =>
+            gaussian(x, 90, 15, lymph) +
+            gaussian(x, 150, 20, mid) +
+            gaussian(x, 300, 40, gran),
+        );
+
+        wbcChart.data.datasets[0].data = wbcData;
+        wbcChart.update();
+
+        /* ===== RBC ===== */
+
+        const mcv = Number(document.getElementById("mcv").value);
+        const rdw = Number(document.getElementById("rdw").value);
+
+        const rbcData = rbcLabels.map((x) => gaussian(x, mcv, rdw, 100));
+
+        rbcChart.data.datasets[0].data = rbcData;
+        rbcChart.update();
+
+        /* ===== PLT ===== */
+
+        const mpv = Number(document.getElementById("mpv").value);
+        const pdw = Number(document.getElementById("pdw").value);
+
+        const pltData = pltLabels.map((x) => gaussian(x, mpv, pdw / 2, 120));
+
+        pltChart.data.datasets[0].data = pltData;
+        pltChart.update();
+      }
+
+      /* realtime listener */
+      document.querySelectorAll("input").forEach((el) => {
+        el.addEventListener("input", updateCharts);
+      });
+
+      updateCharts();
+    </script>
+  </body>
+</html>
