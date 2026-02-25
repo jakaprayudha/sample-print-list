@@ -1,34 +1,44 @@
+function scaleX(value, maxX, width) {
+  return (value / maxX) * width;
+}
+
 function drawAxis(ctx, width, height, maxX) {
   ctx.strokeStyle = "#000";
   ctx.lineWidth = 1;
 
-  // axis
   ctx.beginPath();
   ctx.moveTo(0, height - 10);
   ctx.lineTo(width, height - 10);
   ctx.stroke();
 
-  // ticks
   ctx.font = "9px monospace";
 
-  for (let i = 0; i <= maxX; i += 100) {
-    let x = (i / maxX) * width;
+  for (let i = 0; i <= maxX; i += maxX / 3) {
+    let x = scaleX(i, maxX, width);
+
     ctx.beginPath();
     ctx.moveTo(x, height - 10);
     ctx.lineTo(x, height - 5);
     ctx.stroke();
 
-    ctx.fillText(i, x - 5, height);
+    ctx.fillText(Math.round(i), x - 6, height);
   }
 }
 
-function drawGate(ctx, x, height) {
+function drawGate(ctx, value, maxX, width, height) {
+  let x = scaleX(value, maxX, width);
+
+  ctx.save();
   ctx.setLineDash([4, 4]);
+
   ctx.beginPath();
   ctx.moveTo(x, 0);
   ctx.lineTo(x, height - 10);
   ctx.stroke();
-  ctx.setLineDash([]);
+
+  ctx.restore();
+
+  return x; // return posisi pixel untuk label
 }
 
 function drawCurve(ctx, points) {
@@ -40,6 +50,20 @@ function drawCurve(ctx, points) {
   }
 
   ctx.stroke();
+}
+
+function drawVerticalLabel(ctx, text, x, height) {
+  ctx.save();
+
+  ctx.translate(x, height / 2);
+  ctx.rotate(-Math.PI / 2);
+
+  ctx.font = "bold 9px monospace";
+  ctx.textAlign = "center";
+
+  ctx.fillText(text, 0, 0);
+
+  ctx.restore();
 }
 
 function createChart(id, type) {
@@ -55,14 +79,16 @@ function createChart(id, type) {
   ctx.lineWidth = 1.2;
 
   if (type === "wbc") {
-    drawAxis(ctx, w, h, 300);
+    const maxX = 300;
 
-    // gates
-    drawGate(ctx, 50, h);
-    drawGate(ctx, 100, h);
-    drawGate(ctx, 150, h);
+    drawAxis(ctx, w, h, maxX);
 
-    // curve shape BC-2800 style
+    let g1 = drawGate(ctx, 50, maxX, w, h);
+    let g2 = drawGate(ctx, 100, maxX, w, h);
+    let g3 = drawGate(ctx, 150, maxX, w, h);
+
+    drawVerticalLabel(ctx, "WBC", g3, h);
+
     drawCurve(ctx, [
       [0, 50],
       [20, 40],
@@ -80,9 +106,13 @@ function createChart(id, type) {
   }
 
   if (type === "rbc") {
-    drawAxis(ctx, w, h, 300);
+    const maxX = 300;
 
-    drawGate(ctx, 90, h);
+    drawAxis(ctx, w, h, maxX);
+
+    let g = drawGate(ctx, 90, maxX, w, h);
+
+    drawVerticalLabel(ctx, "RBC", g, h);
 
     drawCurve(ctx, [
       [0, 60],
@@ -96,16 +126,22 @@ function createChart(id, type) {
   }
 
   if (type === "plt") {
-    drawAxis(ctx, w, h, 25);
+    const maxX = 25;
+
+    drawAxis(ctx, w, h, maxX);
+
+    let g = drawGate(ctx, 15, maxX, w, h);
+
+    drawVerticalLabel(ctx, "PLT", g, h);
 
     drawCurve(ctx, [
       [0, 60],
-      [3, 40],
-      [6, 20],
-      [10, 10],
-      [15, 20],
       [20, 40],
-      [25, 60],
+      [40, 20],
+      [80, 10],
+      [120, 20],
+      [150, 40],
+      [180, 60],
     ]);
   }
 }
