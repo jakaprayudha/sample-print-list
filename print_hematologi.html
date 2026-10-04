@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="hematologi.css" />
+  </head>
+
+  <body>
+    <div class="paper">
+      <div class="header">Assay Report by the Analyzer</div>
+
+      <div class="info">
+        <div class="info-line">
+          <span>Time : <span id="time"></span></span>
+          <span>ID:322</span>
+          <span>Mode:WB-All</span>
+          <span>Gender:Female</span>
+          <span>Age:25 Yrs</span>
+        </div>
+
+        <div class="info-name">Name : Zacky Boe 3811222</div>
+      </div>
+
+      <div class="row">
+        <!-- ===== LEFT PARAM ===== -->
+        <div class="block">
+          <pre>
+Parameter
+
+WBC
+Lymph#
+Mid#
+Gran#
+Lymph%
+Mid%
+Gran%
+RBC
+HGB
+HCT
+</pre
+          >
+        </div>
+
+        <!-- ===== LEFT RESULT ===== -->
+        <div class="block">
+          <pre id="resultLeft">
+Result
+</pre
+          >
+        </div>
+
+        <!-- ===== LEFT REF ===== -->
+        <div class="block">
+          <pre>
+Ref. Range
+
+5.0 - 11.0
+1.2 - 3.2
+0.3 - 0.8
+1.2 - 6.8
+20.0 - 40.0
+2.0 - 8.0
+43.0 - 76.0
+11.0 - 16.0
+3.80 - 6.50
+36.0 - 54.0
+</pre
+          >
+        </div>
+
+        <!-- ===== RIGHT PARAM ===== -->
+        <div class="block">
+          <pre>
+Parameter
+
+MCV
+MCH
+MCHC
+RDW-CV
+RDW-SD
+PLT
+MPV
+PDW
+PCT
+</pre
+          >
+        </div>
+
+        <!-- ===== RIGHT RESULT ===== -->
+        <div class="block">
+          <pre id="resultRight">
+Result
+</pre
+          >
+        </div>
+
+        <!-- ===== RIGHT REF ===== -->
+        <div class="block">
+          <pre>
+Ref. Range
+
+76.0 - 96.0
+27.0 - 33.0
+32.0 - 36.0
+11.5 - 14.5
+35.0 - 56.0
+150 - 450
+6.5 - 9.5
+10.0 - 18.0
+0.100 - 0.500
+</pre
+          >
+        </div>
+
+        <!-- ===== HISTOGRAM ===== -->
+        <div class="block">
+          <div class="small-chart">
+            <canvas id="wbc"></canvas>
+            <canvas id="rbc"></canvas>
+            <canvas id="plt"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

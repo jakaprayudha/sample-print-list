@@ -45,7 +45,6 @@
   <body>
     <div class="container">
       <h2>Hematology Histogram Simulator</h2>
-
       <div class="grid">
         <!-- ===== WBC ===== -->
         <div>
@@ -72,7 +71,7 @@
           <input id="mpv" value="10" /> PDW <input id="pdw" value="12" />
         </div>
       </div>
-
+      <button onclick="goPrint()">Cetak</button>
       <h3>WBC Histogram</h3>
       <canvas id="wbcChart" height="120"></canvas>
 
@@ -189,6 +188,30 @@
       });
 
       updateCharts();
+    </script>
+
+    <script>
+      function goPrint() {
+        const data = {
+          wbc: document.getElementById("wbc").value,
+          lymph: document.getElementById("lymph").value,
+          mid: document.getElementById("mid").value,
+          gran: document.getElementById("gran").value,
+
+          rbc: document.getElementById("rbc").value,
+          hgb: document.getElementById("hgb").value,
+          mcv: document.getElementById("mcv").value,
+          rdw: document.getElementById("rdw").value,
+
+          plt: document.getElementById("plt").value,
+          mpv: document.getElementById("mpv").value,
+          pdw: document.getElementById("pdw").value,
+        };
+
+        localStorage.setItem("cbcData", JSON.stringify(data));
+
+        window.open("print_hematologi.html", "_blank");
+      }
     </script>
   </body>
 </html>
